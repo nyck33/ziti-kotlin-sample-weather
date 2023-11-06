@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.Menu
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,7 +18,6 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.TrustManagerFactory
 import javax.net.ssl.X509TrustManager
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,13 +52,18 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener {
-            loadData()
+            val city = findViewById<EditText>(R.id.city_input).text.toString()
+            if (city.isNotEmpty()) {
+                loadData(city)
+            } else {
+                Snackbar.make(it, "Please enter a city name", Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 
-    fun loadData() {
+    fun loadData(city: String) {
         val request = Request.Builder()
-            .url("http://wttr.ziti/Rochester?format=3")
+            .url("http://wttr.ziti/$city?format=3")
             .header("host", "wttr.in")
             .build()
 
