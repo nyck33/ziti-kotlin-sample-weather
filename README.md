@@ -1,5 +1,7 @@
 # Ziti Android Quickstart
 
+### edited so that city name can be entered
+
 This is a simple app that demonstrates the use of [the Ziti SDK for Android](https://github.com/openziti/ziti-sdk-android#readme) (Kotlin). You will need the files in [this Git repository](https://github.com/openziti/ziti-android-app).
 
 ## Prerequisites
